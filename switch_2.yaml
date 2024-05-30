@@ -9,27 +9,27 @@
         commands:
           - conf t
           - vlan 30
-          - name gray
+          - name red
           - vlan 40
-          - name yellow
+          - name blue
 
     - name: Assign VLANs to interfaces
       ios_command:
         commands:
           - conf t
-          - interface Ethernet0/0
+          - interface Ethernet1/0
           - switchport trunk encapsulation dot1q
           - switchport mode trunk
+          - interface Ethernet0/0
+          - switchport access vlan 30
+          - switchport mode access
           - interface Ethernet0/1
           - switchport access vlan 30
           - switchport mode access
           - interface Ethernet0/2
-          - switchport access vlan 30
-          - switchport mode access
-          - interface Ethernet0/3
           - switchport access vlan 40
           - switchport mode access
-          - interface Ethernet1/0
+          - interface Ethernet0/3
           - switchport access vlan 40
           - switchport mode access
       register: create_vlans
