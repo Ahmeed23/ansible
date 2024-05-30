@@ -6,9 +6,9 @@
 
   vars:
     device:
-      ip_address: "192.168.1.132"
+      ip_address: "192.168.60.140"
       username: "admin"
-      password: "Ahmed123"
+      password: "Ahmeed1237"
 
   tasks:
     - name: Create first security rule
@@ -64,11 +64,11 @@
     - name: Create ethernet interfaces
       paloaltonetworks.panos.panos_interface:
         provider: '{{ device }}'
-        if_name: 'ethernet1/2'
+        if_name: 'ethernet1/1'
         mode: 'layer3'
         zone_name: 'untrust'
         vr_name: 'vr-1'
-        ip: ['20.20.2.2/24']
+        ip: ['192.168.61.141/24']
         enable_dhcp: false
         management_profile: 'untrust'
       register: result
@@ -99,7 +99,7 @@
     - name: ethernet1/1.10 as static 
       paloaltonetworks.panos.panos_l3_subinterface:
         provider: '{{ device }}'
-        name: "ethernet1/1.10"
+        name: "ethernet1/2.10"
         tag: 10
         enable_dhcp: false
         ip: ["192.168.10.1/24"]
@@ -110,7 +110,7 @@
     - name: ethernet1/1.20 as static
       paloaltonetworks.panos.panos_l3_subinterface:
         provider: '{{ device }}'
-        name: "ethernet1/1.20"
+        name: "ethernet1/2.20"
         tag: 20
         enable_dhcp: false
         ip: ["192.168.20.1/24"]
@@ -124,7 +124,7 @@
         virtual_router: 'vr-1'
         name: 'route'
         destination: '0.0.0.0/0'
-        nexthop: '20.20.2.1'
+        nexthop: '192.168.61.141'
         metric: "10"
         
         
