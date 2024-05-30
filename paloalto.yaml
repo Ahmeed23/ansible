@@ -96,7 +96,7 @@
         ping: true
 
 
-    - name: ethernet1/1.10 as static 
+    - name: ethernet1/2.10 as static 
       paloaltonetworks.panos.panos_l3_subinterface:
         provider: '{{ device }}'
         name: "ethernet1/2.10"
@@ -107,7 +107,7 @@
         vr_name: 'vr-1'
         management_profile: 'trust'
 
-    - name: ethernet1/1.20 as static
+    - name: ethernet1/2.20 as static
       paloaltonetworks.panos.panos_l3_subinterface:
         provider: '{{ device }}'
         name: "ethernet1/2.20"
@@ -124,7 +124,7 @@
         virtual_router: 'vr-1'
         name: 'route'
         destination: '0.0.0.0/0'
-        nexthop: '192.168.61.141'
+        nexthop: '192.168.61.142'
         metric: "10"
         
         
@@ -157,13 +157,13 @@
         version: 'ikev1'
         interface: 'ethernet1/2'
         local_ip_address_type: 'ip'
-        local_ip_address: '20.20.2.2/24'
-        peer_ip_value: '20.20.3.2'
-        pre_shared_key: 'ahmed123'
+        local_ip_address: '192.168.61.141/24'
+        peer_ip_value: '192.168.62.151'
+        pre_shared_key: 'ahmeed'
         peer_id_type: 'ipaddr'
-        peer_id_value: '20.20.3.2'
+        peer_id_value: '192.168.62.151'
         local_id_type: 'ipaddr'
-        local_id_value: '20.20.2.2'
+        local_id_value: '192.168.61.141'
         enable_passive_mode: false
         enable_liveness_check: false
         liveness_check_interval: '5'
