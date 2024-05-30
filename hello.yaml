@@ -1,0 +1,54 @@
+---
+- name: Configure network devices 
+  hosts: all
+  gather_facts: no
+  connection: network_cli 
+  tasks: 
+    - name: Configure interface FastEthernet 
+      ios_command:
+        commands:
+          - conf t
+          - interface FastEthernet0/0
+          - ip address 20.20.1.1 255.255.255.0
+          - no shutdown
+          - interface FastEthernet1/0
+          - ip address 20.20.2.1 255.255.255.0
+          - no shutdown
+          - interface FastEthernet2/0
+          - ip address 20.20.3.1 255.255.255.0
+          - no shutdown
+          - interface FastEthernet4/0
+          - ip address 192.168.1.200 255.255.255.0
+          - no shutdown
+      register: result_fastethernet
+      register: result_interface_config
+    # - name: Configure SSH and username
+    #   ios_command:
+    #     commands:
+    #       - username ahmed12 secret ahmed12
+    #       - crypto key generate rsa encryption modulus 1024
+    #       - line vty 0 4
+    #       - transport input ssh
+    #       - login local
+    #   register: result_SSH
+    - name: Configure OSPF
+      ios_command:
+        commands:
+          - conf t
+          - router ospf 1
+          - network 0.0.0.0 255.255.255.255 area 0
+      register: result_ospf
+
+    - name: save
+      ios_command:
+        commands:
+          - wr
+
+    # Add more tasks as needed
+
+    - name: Print task results
+      debug:
+        var: item
+      with_items:
+        - result_interface_config
+        - result_ospf
