@@ -6,9 +6,9 @@
 
   vars:
     device:
-      ip_address: "192.168.1.130"
+      ip_address: "192.168.60.150"
       username: "admin"
-      password: "Ahmed123"
+      password: "Ahmeed1237"
 
   tasks:
     - name: Create first security rule
