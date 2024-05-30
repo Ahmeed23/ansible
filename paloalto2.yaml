@@ -159,7 +159,7 @@
         local_ip_address_type: 'ip'
         local_ip_address: '192.168.62.151/24'
         peer_ip_value: '192.168.61.141'
-        pre_shared_key: 'ahmed123'
+        pre_shared_key: 'ahmeed'
         peer_id_type: 'ipaddr'
         peer_id_value: '192.168.61.141'
         local_id_type: 'ipaddr'
