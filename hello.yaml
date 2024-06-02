@@ -9,7 +9,7 @@
         commands:
           - conf t
           - interface FastEthernet0/0
-          - ip address 192.168.60.133 255.255.255.0
+          - ip address 192.168.60.131 255.255.255.0
           - no shutdown
           - interface FastEthernet1/0
           - ip address 192.168.61.142 255.255.255.0
