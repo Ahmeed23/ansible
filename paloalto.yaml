@@ -186,8 +186,8 @@
         provider: '{{ device }}'
         state: 'present'
         name: 'Suite-B-GCM-256'
-        esp_authentication: ['sha1']
-        esp_encryption: ['aes-256-cbc']
+        esp_authentication: ['none']
+        esp_encryption: ['aes-256-gcm']
         lifetime_seconds: '3600'
 
     - name: Add IPSec tunnel to IKE gateway profile
