@@ -14,7 +14,7 @@
     - name: Create first security rule
       paloaltonetworks.panos.panos_security_rule:
         provider: "{{ device }}"
-        rule_name: 'permit'
+        rule_name: 'Allow_all'
         source_zone: ['any']
         destination_zone: ['any']
         source_ip: ['any']
@@ -26,7 +26,7 @@
     - name: Create Virtual Router
       paloaltonetworks.panos.panos_virtual_router:
         provider: '{{ device }}'
-        name: 'vr-1'
+        name: 'default'
         
     - name: ensure mngt profile trust exists 
       paloaltonetworks.panos.panos_management_profile:
@@ -78,7 +78,7 @@
         provider: '{{ device }}'
         if_name: "tunnel.100"
         zone_name: 'VPN'
-        vr_name: 'vr-1'
+        vr_name: 'default'
         management_profile: 'untrust'
 
     - name: ensure mngt profile trust exists 
@@ -104,7 +104,7 @@
         enable_dhcp: false
         ip: ["192.168.10.1/24"]
         zone_name: "trust"
-        vr_name: 'vr-1'
+        vr_name: 'default'
         management_profile: 'trust'
 
     - name: ethernet1/2.20 as static
@@ -115,13 +115,13 @@
         enable_dhcp: false
         ip: ["192.168.20.1/24"]
         zone_name: "trust"
-        vr_name: 'vr-1'
+        vr_name: 'default'
         management_profile: 'trust'
 
     - name: Create route 
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
-        virtual_router: 'vr-1'
+        virtual_router: 'Default Route'
         name: 'route'
         destination: '0.0.0.0/0'
         nexthop: '192.168.61.142'
@@ -132,9 +132,19 @@
     - name: Create route 'vpn'
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
-        virtual_router: 'vr-1'
-        name: 'ROUTE VPN'
-        destination: '192.168.0.0/16'
+        virtual_router: 'default'
+        name: 'VPN route'
+        destination: '192.168.30.0/16'
+        interface: 'tunnel.100'
+        nexthop_type: 'none'
+        metric: "10"
+
+    - name: Create route 'vpn'
+      paloaltonetworks.panos.panos_static_route:
+        provider: '{{ device }}'
+        virtual_router: 'default'
+        name: 'VPN router'
+        destination: '192.168.40.0/16'
         interface: 'tunnel.100'
         nexthop_type: 'none'
         metric: "10"
@@ -143,19 +153,19 @@
       paloaltonetworks.panos.panos_ike_crypto_profile:
         provider: '{{ device }}'
         state: 'present'
-        name: 'vpn-ike-profile'
-        dh_group: ['group2']
-        authentication: ['sha1']
-        encryption: ['aes-128-cbc']
-        lifetime_seconds: '28800'    
+        name: 'Suite-B-GCM-256'
+        dh_group: ['group20']
+        authentication: ['sha384']
+        encryption: ['aes-256-cbc']
+        lifetime_hours: '8'    
 
     - name: Add IKE gateway config to the firewall
       paloaltonetworks.panos.panos_ike_gateway:
         provider: '{{ device }}'
         state: 'present'
-        name: 'IKEGW-Ansible'
+        name: 'VPN'
         version: 'ikev1'
-        interface: 'ethernet1/2'
+        interface: 'ethernet1/1'
         local_ip_address_type: 'ip'
         local_ip_address: '192.168.61.141/24'
         peer_ip_value: '192.168.62.151'
@@ -168,25 +178,25 @@
         enable_liveness_check: false
         liveness_check_interval: '5'
         ikev1_exchange_mode: 'auto'
-        ikev1_crypto_profile: 'vpn-ike-profile'
+        ikev1_crypto_profile: 'Suite-B-GCM-256'
 
 
     - name: Add IPSec crypto config to the firewall
       paloaltonetworks.panos.panos_ipsec_profile:
         provider: '{{ device }}'
         state: 'present'
-        name: 'ipsec-vpn-profile'
+        name: 'Suite-B-GCM-256'
         esp_authentication: ['sha1']
-        esp_encryption: ['aes-128-cbc']
+        esp_encryption: ['aes-256-cbc']
         lifetime_seconds: '3600'
 
     - name: Add IPSec tunnel to IKE gateway profile
       paloaltonetworks.panos.panos_ipsec_tunnel:
         provider: '{{ device }}'
-        name: 'IPSecTunnel-Ansible'
+        name: 'VPN'
         tunnel_interface: 'tunnel.100'
-        ak_ike_gateway: 'IKEGW-Ansible'
-        ak_ipsec_crypto_profile: 'ipsec-vpn-profile'
+        ak_ike_gateway: 'VPN'
+        ak_ipsec_crypto_profile: 'Suite-B-GCM-256'
         state: 'present'
 
     # - name: Configure DHCP Server
