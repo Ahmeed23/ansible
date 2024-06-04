@@ -9,9 +9,9 @@
         commands:
           - conf t
           - vlan 30
-          - name red
+          - name DevOps Department
           - vlan 40
-          - name blue
+          - name Telecommunication Department
 
     - name: Assign VLANs to interfaces
       ios_command:
