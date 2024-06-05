@@ -128,7 +128,7 @@
         metric: "10"
         
 
-    - name: Create route 'vpn'
+    - name: Create route 'VPN route'
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
         virtual_router: 'default'
@@ -139,7 +139,7 @@
         metric: "10"
 
 
-      - name: Create route 'vpn'
+      - name: Create route 'VPN router'
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
         virtual_router: 'default'
