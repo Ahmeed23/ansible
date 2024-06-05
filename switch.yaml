@@ -8,10 +8,10 @@
       ios_command:
         commands:
           - conf t
-          - vlan 10
+          - name vlan 10
           - DMZ
           - vlan 20
-          - IT DEPARTMENT
+          - name IT DEPARTMENT
 
     - name: Assign VLANs to interfaces
       ios_command:
