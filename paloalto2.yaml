@@ -128,22 +128,22 @@
         metric: "10"
         
 
-    - name: Create route 'VPN route'
+    - name: Create route 'VPN'
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
         virtual_router: 'default'
-        name: 'VPN'
+        name: 'VPN route'
         destination: '192.168.10.0/24'
         interface: 'tunnel.100'
         nexthop_type: 'none'
         metric: "10"
 
 
-      - name: Create route 'VPN router'
+    - name: Create route 'VPN'
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
         virtual_router: 'default'
-        name: 'VPN Route'
+        name: 'VPN router'
         destination: '192.168.20.0/16'
         interface: 'tunnel.100'
         nexthop_type: 'none'
