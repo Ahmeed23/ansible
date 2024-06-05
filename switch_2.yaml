@@ -11,7 +11,7 @@
           - vlan 30
           - name DevOps Department
           - vlan 40
-          - name Telecommunication Department
+          - name Telecom Department
 
     - name: Assign VLANs to interfaces
       ios_command:
