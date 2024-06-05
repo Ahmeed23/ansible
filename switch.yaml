@@ -8,8 +8,8 @@
       ios_command:
         commands:
           - conf t
-          - name vlan 10
-          - DMZ
+          - vlan 10
+          - name DMZ
           - vlan 20
           - name IT DEPARTMENT
 
