@@ -3,8 +3,6 @@
   hosts: all
   gather_facts: false
   connection: local
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
 
   vars:
     device:
@@ -14,7 +12,7 @@
 
   tasks:
     - name: Create first security rule
-      paloaltonetworks.panos.panos_security_rule:
+      paloaltonetworks.panos_security_rule:
         provider: "{{ device }}"
         rule_name: 'Allow_all'
         source_zone: ['any']
