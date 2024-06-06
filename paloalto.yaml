@@ -27,6 +27,10 @@
       paloaltonetworks.panos.panos_virtual_router:
         provider: '{{ device }}'
         name: 'default'
+         ospf:
+           - area: "0.0.0.0"
+             interface:
+               - ethernet1/1
         
     - name: ensure mngt profile trust exists 
       paloaltonetworks.panos.panos_management_profile:
