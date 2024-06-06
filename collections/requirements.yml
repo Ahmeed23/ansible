@@ -2,3 +2,6 @@
 collections:
   - name: paloaltonetworks.panos
   - name: cisco.ios
+dependencies:
+  - name: pan-python
+    src: pip
