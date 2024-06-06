@@ -31,12 +31,22 @@
      - name: Create Static Route
        paloaltonetworks.panos.panos_static_route:
          provider: '{{ device }}'
-         v_r: 'default'
+         virtual_router: 'default'
+         name: 'VPN Route'
+         destination: '192.168.30.0/24'
+         interface: 'tunnel.100'
+         nexthop_type: 'none'
+         metric: '10'
+         
+     - name: Create Static Route
+       paloaltonetworks.panos.panos_static_route:
+         provider: '{{ device }}'
+         virtual_router: 'default'
          name: 'VPN Router'
          destination: '192.168.40.0/24'
          interface: 'tunnel.100'
          nexthop_type: 'none'
-         metric: '10'
+         metric: '10'   
         
     - name: ensure mngt profile trust exists 
       paloaltonetworks.panos.panos_management_profile:
