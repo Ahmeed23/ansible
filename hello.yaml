@@ -17,9 +17,9 @@
           - interface FastEthernet2/0
           - ip address 192.168.62.152 255.255.255.0
           - no shutdown
-          #- interface FastEthernet4/0
-          #- ip address 192.168.1.200 255.255.255.0
-          #- no shutdown
+          - interface FastEthernet3/0
+          - ip address 192.168.60.200 255.255.255.0
+          - no shutdown
       register: result_fastethernet
       register: result_interface_config
     # - name: Configure SSH and username
