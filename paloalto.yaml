@@ -124,8 +124,6 @@
         virtual_router: 'default'
         name: 'Default Route'
         destination: '0.0.0.0/0'
-        interface: 'ethernet1/1'
-        nexthop_type: 'ip-address'
         nexthop: '192.168.61.142'
         metric: "10"
         
