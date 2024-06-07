@@ -134,7 +134,7 @@
         provider: '{{ device }}'
         virtual_router: 'default'
         name: 'VPN route'
-        destination: '192.168.30.0/16'
+        destination: '192.168.30.0/24'
         interface: 'tunnel.100'
         nexthop_type: 'none'
         metric: "10"
@@ -144,7 +144,7 @@
         provider: '{{ device }}'
         virtual_router: 'default'
         name: 'VPN router'
-        destination: '192.168.40.0/16'
+        destination: '192.168.40.0/24'
         interface: 'tunnel.100'
         nexthop_type: 'none'
         metric: "10"
