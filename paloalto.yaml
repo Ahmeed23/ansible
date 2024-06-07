@@ -67,7 +67,7 @@
         if_name: 'ethernet1/1'
         mode: 'layer3'
         zone_name: 'untrust'
-        vr_name: 'vr-1'
+        vr_name: 'default'
         ip: ['192.168.61.141/24']
         enable_dhcp: false
         management_profile: 'untrust'
