@@ -121,8 +121,8 @@
     - name: Create route 
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
-        virtual_router: 'Default Route'
-        name: 'route'
+        virtual_router: 'default'
+        name: 'Default Route'
         destination: '0.0.0.0/0'
         nexthop: '192.168.61.142'
         metric: "10"
