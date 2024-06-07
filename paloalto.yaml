@@ -28,13 +28,13 @@
         provider: '{{ device }}'
         name: 'default'
 
-    #- name: create tunnel.100
-     # paloaltonetworks.panos.panos_tunnel:
-      #  provider: '{{ device }}'
-      #  if_name: "tunnel.100"
-       # zone_name: 'VPN'
-        #vr_name: 'default'
-        #management_profile: 'untrust'
+    - name: create tunnel.100
+      paloaltonetworks.panos.panos_tunnel:
+        provider: '{{ device }}'
+        if_name: "tunnel.100"
+        zone_name: 'VPN'
+        vr_name: 'default'
+        management_profile: 'untrust'
         
     #- name: Create Static Route
      # paloaltonetworks.panos.panos_static_route:
@@ -46,15 +46,15 @@
         #nexthop_type: 'none'
         #metric: '10'
          
-    - name: Create Static Route
-      paloaltonetworks.panos.panos_static_route:
-        provider: '{{ device }}'
-        virtual_router: 'default'
-        name: 'VPN Router'
-        destination: '192.168.40.0/24'
-        interface: 'tunnel.100'
-        nexthop_type: 'none'
-        metric: '10'   
+    #- name: Create Static Route
+     # paloaltonetworks.panos.panos_static_route:
+      #  provider: '{{ device }}'
+       # virtual_router: 'default'
+        #name: 'VPN Router'
+        #destination: '192.168.40.0/24'
+        #interface: 'tunnel.100'
+        #nexthop_type: 'none'
+        #metric: '10'   
         
     - name: ensure mngt profile trust exists 
       paloaltonetworks.panos.panos_management_profile:
