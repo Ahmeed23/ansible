@@ -39,7 +39,7 @@
     - name: ensure mngt profile Ping exists 
       paloaltonetworks.panos.panos_management_profile:
         provider: '{{ device }}'
-        name: 'Ping'
+        name: 'untrust'
         ping: true    
 
     - name: create trust zone on a firewall
@@ -48,10 +48,10 @@
         zone: 'Trust'
         mode: 'layer3'
         
-    - name: create Ping zone on a firewall
+    - name: create untrust zone on a firewall
       paloaltonetworks.panos.panos_zone:
         provider: '{{ device }}'
-        zone: 'Ping'
+        zone: 'untrust'
         mode: 'layer3'
         
     - name: create VPN zone on a firewall
@@ -70,7 +70,7 @@
         vr_name: 'default'
         ip: ['192.168.62.151/24']
         enable_dhcp: false
-        management_profile: 'Ping'
+        management_profile: 'untrust'
       register: result
 
     - name: create tunnel.100
@@ -79,7 +79,7 @@
         if_name: "tunnel.100"
         zone_name: 'VPN'
         vr_name: 'default'
-        management_profile: 'Ping'
+        management_profile: 'untrust'
 
     - name: ensure mngt profile trust exists 
       paloaltonetworks.panos.panos_management_profile:
@@ -89,10 +89,10 @@
         ssh: true 
         https: true
         
-    - name: ensure mngt profile Ping exists 
+    - name: ensure mngt profile untrust exists 
       paloaltonetworks.panos.panos_management_profile:
         provider: '{{ device }}'
-        name: 'Ping'
+        name: 'untrust'
         ping: true
 
 
@@ -122,7 +122,7 @@
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
         virtual_router: 'default'
-        name: 'Defqult Route'
+        name: 'Default Route'
         destination: '0.0.0.0/0'
         nexthop: '192.168.62.152'
         metric: "10"
