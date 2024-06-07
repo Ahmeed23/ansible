@@ -27,6 +27,14 @@
       paloaltonetworks.panos.panos_virtual_router:
         provider: '{{ device }}'
         name: 'default'
+
+    - name: create tunnel.100
+      paloaltonetworks.panos.panos_tunnel:
+        provider: '{{ device }}'
+        if_name: "tunnel.100"
+        zone_name: 'VPN'
+        vr_name: 'default'
+        management_profile: 'untrust'
         
     - name: Create Static Route
       paloaltonetworks.panos.panos_static_route:
@@ -92,14 +100,6 @@
         enable_dhcp: false
         management_profile: 'untrust'
       register: result
-
-    - name: create tunnel.100
-      paloaltonetworks.panos.panos_tunnel:
-        provider: '{{ device }}'
-        if_name: "tunnel.100"
-        zone_name: 'VPN'
-        vr_name: 'default'
-        management_profile: 'untrust'
 
     - name: ensure mngt profile trust exists 
       paloaltonetworks.panos.panos_management_profile:
