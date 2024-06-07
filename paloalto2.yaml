@@ -8,7 +8,7 @@
     device:
       ip_address: "192.168.60.150"
       username: "admin"
-      password: "Ahmeed1237"
+      password: "Ahmeed127"
 
   tasks:
     - name: Create first security rule
@@ -121,8 +121,8 @@
     - name: Create route 
       paloaltonetworks.panos.panos_static_route:
         provider: '{{ device }}'
-        virtual_router: 'Default route'
-        name: 'route'
+        virtual_router: 'default'
+        name: 'Defqult Route'
         destination: '0.0.0.0/0'
         nexthop: '192.168.62.152'
         metric: "10"
@@ -144,7 +144,7 @@
         provider: '{{ device }}'
         virtual_router: 'default'
         name: 'VPN router'
-        destination: '192.168.20.0/16'
+        destination: '192.168.20.0/24'
         interface: 'tunnel.100'
         nexthop_type: 'none'
         metric: "10"
