@@ -10,9 +10,6 @@
       ios_command:
         commands:
           - conf t
-          #- interface FastEthernet0/0
-          #- ip address 192.168.60.131 255.255.255.0
-          #- no shutdown
           - interface FastEthernet1/0
           - ip address 192.168.61.142 255.255.255.0
           - no shutdown
@@ -24,15 +21,6 @@
           - no shutdown
       register: result_fastethernet
       register: result_interface_config
-    # - name: Configure SSH and username
-    #   ios_command:
-    #     commands:
-    #       - username ahmed12 secret ahmed12
-    #       - crypto key generate rsa encryption modulus 1024
-    #       - line vty 0 4
-    #       - transport input ssh
-    #       - login local
-    #   register: result_SSH
     - name: Configure OSPF
       ios_command:
         commands:
@@ -46,7 +34,6 @@
         commands:
           - wr
 
-    # Add more tasks as needed
 
     - name: Print task results
       debug:
