@@ -144,7 +144,7 @@
         provider: '{{ device }}'
         state: 'present'
         name: 'Suite-B-GCM-256'
-        dh_group: ['group20']
+        dh_group: ['group2']
         authentication: ['sha384']
         encryption: ['aes-256-cbc']
         lifetime_hours: '8'    
