@@ -31,7 +31,7 @@
     - name: ensure mngt profile trust exists 
       paloaltonetworks.panos.panos_management_profile:
         provider: '{{ device }}'
-        name: 'trust'
+        name: 'Trust'
         ping: true
         ssh: true 
         https: true
@@ -39,19 +39,19 @@
     - name: ensure mngt profile untrust exists 
       paloaltonetworks.panos.panos_management_profile:
         provider: '{{ device }}'
-        name: 'untrust'
+        name: 'Untrust'
         ping: true    
 
     - name: create trust zone on a firewall
       paloaltonetworks.panos.panos_zone:
         provider: '{{ device }}'
-        zone: 'trust'
+        zone: 'Trust'
         mode: 'layer3'
         
     - name: create untrust zone on a firewall
       paloaltonetworks.panos.panos_zone:
         provider: '{{ device }}'
-        zone: 'untrust'
+        zone: 'Untrust'
         mode: 'layer3'
         
     - name: create VPN zone on a firewall
@@ -66,7 +66,7 @@
         provider: '{{ device }}'
         if_name: 'ethernet1/1'
         mode: 'layer3'
-        zone_name: 'untrust'
+        zone_name: 'Untrust'
         vr_name: 'default'
         ip: ['192.168.61.141/24']
         enable_dhcp: false
@@ -79,12 +79,12 @@
         if_name: "tunnel.100"
         zone_name: 'VPN'
         vr_name: 'default'
-        management_profile: 'untrust'
+        management_profile: 'Untrust'
 
     - name: ensure mngt profile trust exists 
       paloaltonetworks.panos.panos_management_profile:
         provider: '{{ device }}'
-        name: 'trust'
+        name: 'Trust'
         ping: true
         ssh: true 
         https: true
@@ -92,7 +92,7 @@
     - name: ensure mngt profile untrust exists 
       paloaltonetworks.panos.panos_management_profile:
         provider: '{{ device }}'
-        name: 'untrust'
+        name: 'Untrust'
         ping: true
 
 
@@ -103,9 +103,9 @@
         tag: 10
         enable_dhcp: false
         ip: ["192.168.10.1/24"]
-        zone_name: "trust"
+        zone_name: "Trust"
         vr_name: 'default'
-        management_profile: 'trust'
+        management_profile: 'Trust'
 
     - name: ethernet1/2.20 as static
       paloaltonetworks.panos.panos_l3_subinterface:
@@ -114,9 +114,9 @@
         tag: 20
         enable_dhcp: false
         ip: ["192.168.20.1/24"]
-        zone_name: "trust"
+        zone_name: "Trust"
         vr_name: 'default'
-        management_profile: 'trust'
+        management_profile: 'Trust'
 
     - name: Create route 
       paloaltonetworks.panos.panos_static_route:
