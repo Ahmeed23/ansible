@@ -36,10 +36,10 @@
         ssh: true 
         https: true
         
-    - name: ensure mngt profile untrust exists 
+    - name: ensure mngt profile ping exists 
       paloaltonetworks.panos.panos_management_profile:
         provider: '{{ device }}'
-        name: 'Untrust'
+        name: 'Ping'
         ping: true    
 
     - name: create trust zone on a firewall
@@ -70,7 +70,7 @@
         vr_name: 'default'
         ip: ['192.168.61.141/24']
         enable_dhcp: false
-        management_profile: 'untrust'
+        management_profile: 'Ping'
       register: result
       
     - name: create tunnel.100
@@ -79,22 +79,7 @@
         if_name: "tunnel.100"
         zone_name: 'VPN'
         vr_name: 'default'
-        management_profile: 'Untrust'
-
-    - name: ensure mngt profile trust exists 
-      paloaltonetworks.panos.panos_management_profile:
-        provider: '{{ device }}'
-        name: 'Trust'
-        ping: true
-        ssh: true 
-        https: true
-        
-    - name: ensure mngt profile untrust exists 
-      paloaltonetworks.panos.panos_management_profile:
-        provider: '{{ device }}'
-        name: 'Untrust'
-        ping: true
-
+        management_profile: 'Ping'
 
     - name: ethernet1/2.10 as static 
       paloaltonetworks.panos.panos_l3_subinterface:
