@@ -42,4 +42,5 @@
           - wr
 
     - name: Debug registered var
-      debug: var=sh_vlan_br_result.stdout_lines
+      debug:
+        var=sh_vlan_br_result.stdout_lines
