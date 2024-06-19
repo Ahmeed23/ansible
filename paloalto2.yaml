@@ -81,21 +81,6 @@
         vr_name: 'default'
         management_profile: 'Ping'
 
-    - name: ensure mngt profile trust exists 
-      paloaltonetworks.panos.panos_management_profile:
-        provider: '{{ device }}'
-        name: 'Trust'
-        ping: true
-        ssh: true 
-        https: true
-        
-    - name: ensure mngt profile untrust exists 
-      paloaltonetworks.panos.panos_management_profile:
-        provider: '{{ device }}'
-        name: 'Untrust'
-        ping: true
-
-
     - name: ethernet1/2.30 as static 
       paloaltonetworks.panos.panos_l3_subinterface:
         provider: '{{ device }}'
